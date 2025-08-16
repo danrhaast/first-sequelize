@@ -1,0 +1,60 @@
+<%- include('partials/header') %>
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Data de Nascimento</th>
+                <th>Gênero</th>
+                <th>Data de Cadastro</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (usuarios.length === 0) { %>
+                <tr>
+                    <td>Nenhum usuário cadastrado.</td>
+                </tr>
+            <% } else { %>
+                <% usuarios.forEach(usuario => { %>
+                    <tr>
+                        <td><%= usuario.id %></td>
+                        <td><%= usuario.nome %></td>
+                        <td><%= usuario.email %></td>
+                        <td><%= dayjs(usuario.dataNasc).format("DD/MM/YYYY") %></td>
+                        <td><%= usuario.genero %></td>
+                        <td> <%= usuario.createdAt %></td>
+
+                        <td>
+                            <a href="/deletar/<%= usuario.id %>">Deletar</a>
+                            <a href="/atualizar/<%= usuario.id %>">Editar</a>
+                        </td>
+                    </tr>
+                <% }) %>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+
+<style>
+    div {
+        display: flex;
+        justify-content: center;
+    }
+    table {
+        border-collapse: collapse;
+        text-align: left;
+        margin: 1vw;
+        padding: 1vw;
+        width: 60vw;
+    }
+
+    th, td {
+        padding: 0.5vw;
+        border: 1px solid black;
+    }
+
+</style>
