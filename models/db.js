@@ -1,8 +1,15 @@
 
+const dotenv = require('dotenv')
+dotenv.config()
+
 const Sequelize = require('sequelize')
-const sequelize = new Sequelize('testeNodejs', 'root', 'voucomeraminey', {
-    host: 'localhost',
-    dialect: 'mysql'
+const sequelize = new Sequelize(
+    process.env.SEQUELIZE_DATABASE,
+    process.env.SEQUELIZE_USERNAME,
+    process.env.SEQUELIZE_PASSWORD,
+    {
+        host: process.env.SEQUELIZE_HOST || 'localhost',
+        dialect: 'mysql'
 })
 
 sequelize.authenticate().then(function() {
@@ -15,6 +22,6 @@ sequelize.authenticate().then(function() {
 })
 
 module.exports = {
-    Sequelize: Sequelize,
-    sequelize: sequelize
+    Sequelize,
+    sequelize
 };

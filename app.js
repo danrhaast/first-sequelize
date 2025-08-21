@@ -7,6 +7,9 @@ const bodyParser = require('body-parser')
 const { METHODS } = require('http')
 const Usuarios = require('./models/usuarios')
 const dayjs = require('dayjs')
+const dotenv = require('dotenv')
+
+dotenv.config()
 
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
